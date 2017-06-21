@@ -17,17 +17,17 @@ Choco.registerUtilityWindowSubclass({
 			this.contentView.addSubview( Choco.Label( c => {
 				c.frame = Choco.Rect(10, 110, 160, 26)
 				c.stringValue = 'Exchange Rate per $1:'
-				c.alignment = $.NSRightTextAlignment
+				c.alignment = Choco.RightTextAlignment()
 			}))
 			this.contentView.addSubview( Choco.Label( c => {
 				c.frame = Choco.Rect(10, 80, 160, 26)
 				c.stringValue = 'Dollers to Convert:'
-				c.alignment = $.NSRightTextAlignment
+				c.alignment = Choco.RightTextAlignment()
 			}))
 			this.contentView.addSubview( Choco.Label( c => {
 				c.frame = Choco.Rect(10, 50, 160, 26)
 				c.stringValue = 'Amount in Other Currency:'
-				c.alignment = $.NSRightTextAlignment
+				c.alignment = Choco.RightTextAlignment()
 			}))
 			this.contentView.addSubview( Choco.TextField( c => {
 				this.rate = c
