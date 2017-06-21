@@ -106,11 +106,6 @@
 	}
 	global.Choco.Label = Label
 	
-	function RightTextAlignment() {
-		return $.NSRightTextAlignment
-	}
-	global.Choco.RightTextAlignment = RightTextAlignment
-	
 	function WrappingTextField(fun = ()=>{}) {
 		registerControlTextEditingDelegateSubclass()
 		let r = $.NSMakeRect(0, 0, 26, 26)
