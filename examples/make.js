@@ -5,7 +5,7 @@ Applet = Application.currentApplication()
 Applet.includeStandardAdditions = true
 
 function run(argv) {
-    let targets = ['Example_Choco_StatuBarMenu', 'CurrencyConverter']
+    let targets = ['Example_Choco_StatuBarMenu', 'HelloWorld', 'CurrencyConverter']
     let otherTargets = ['Example_Pure_StatuBarMenu']
     if (argv[0]==='clean') {
         for (let t of targets) { clean(t) }
