@@ -5,14 +5,11 @@ Applet = Application.currentApplication()
 Applet.includeStandardAdditions = true
 
 function run(argv) {
-    let targets = ['Example_Choco_StatuBarMenu', 'HelloWorld', 'CurrencyConverter']
-    let otherTargets = ['Example_Pure_StatuBarMenu']
+    let targets = ['CurrencyConverter']
     if (argv[0]==='clean') {
         for (let t of targets) { clean(t) }
-        for (let t of otherTargets) { clean(t) }
     } else {
         for (let t of targets) { build(t) }
-        for (let t of otherTargets) { build(t) }
     }
     $.exit(0)
 }
@@ -21,7 +18,7 @@ function build(target) {
 let cmd = `
 if [ -e "${target}.js" ]; then
     {
-        cat ../Choco.js
+        cat ../../Choco.js
         echo ""
         echo "//====================="
         echo ""
@@ -32,7 +29,6 @@ else
     echo ""
 fi
 `
-    
     if (! Applet.doShellScript(cmd.trim()) ) {
         throw `file not found: ${target}.js`
     }
