@@ -52,6 +52,13 @@
 	}
 	global.Choco.Req = Req
 	
+	function Sound(path, fun=()=>{}) {
+		let s = $.NSSound.alloc.initWithContentsOfFileByReference(path, true)
+		fun(s)
+		return s
+	}
+	global.Choco.Sound = Sound
+	
 	function Button(fun = ()=>{}) {
 		let r = $.NSMakeRect(0, 0, 90, 26)
 		let b = $.NSButton.alloc.initWithFrame(r)
@@ -166,7 +173,7 @@
 	
 	function WebView(fun = ()=>{}) {
 		ObjC.import('WebKit')
-		let r = $.NSMakeRect(0, 0, 0, 0)
+		let r = $.NSZeroRect
 		let c = $.WKWebViewConfiguration.alloc.init
 		let w = $.WKWebView.alloc.initWithFrameConfiguration(r, c)
 		fun(w)
