@@ -35,4 +35,5 @@ Choco.registerUtilityWindowSubclass({
 })
 
 window = $.AppWindow.alloc.init
+$.NSApp.activateIgnoringOtherApps(true)
 $.NSApp.runModalForWindow(window)

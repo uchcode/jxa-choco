@@ -2,23 +2,11 @@
 
 function run(argv) {
     ObjC.import('stdlib')
-    let targets = ['Template_CustomDialog', 'Template_UtilityWindow', 'Template_ShoeboxWindow', 'Template_StatuBarMenu', 'Template_DockMenu', 'Template_WebViewWindow']
-    let tpath = "/Library/Application Support/Script Editor/Templates/Choco Templates/"
+    let targets = ['WebWidget']
     switch (argv[0]) {
-    case 'open':
-        doShell(`open "/Library/Application Support/Script Editor/Templates/"`)
-        break
-    case 'uninstall':
-        doShell(`sudo rm -rf "${tpath}"`)
-        break
-    case 'install':
-        for (let t of targets) { build(t) }
-        doShell(`sudo mv ./dist/ "${tpath}"`)
-        break
     case 'clean':
-        doShell(`rm -rf ./dist/`)
+        for (let t of targets) { clean(t) }
         break
-    case 'build':
     default:
         for (let t of targets) { build(t) }
         break
@@ -31,7 +19,7 @@ function build(target) {
         if [ -e "${target}.js" ]; then
             {
                 mkdir -p ./dist/
-                cat ../Choco.js
+                cat ../../Choco.js
                 echo ""
                 echo "//====================="
                 echo ""
@@ -45,6 +33,10 @@ function build(target) {
     if (!doShell(script)) {
         throw `file not found: ${target}.js`
     }
+}
+
+function clean(target) {
+    doShell(`rm -rf ./dist/`)
 }
 
 function doShell(s) {

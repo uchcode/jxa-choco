@@ -6,9 +6,9 @@ Choco.registerUtilityWindowSubclass({
 	},
 	methods: {
 		initialize() {
+			this.title = 'window_title'
 			this.setFrame($.NSMakeRect(0, 0, 480, 270))
 			this.center
-			this.title = 'window_title'
 			//$.NSWindow.removeFrameUsingName('AppWindow')
 			//this.setFrameAutosaveName('AppWindow')
 		},
@@ -17,3 +17,4 @@ Choco.registerUtilityWindowSubclass({
 
 window = $.AppWindow.alloc.init
 window.makeKeyAndOrderFront($())
+$.NSApp.activateIgnoringOtherApps(true)
