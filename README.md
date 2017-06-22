@@ -3,5 +3,5 @@
 ```
 $ cd templates
 $ osascript make.js
-$ sudo mv *.app /Library/Application\ Support/Script\ Editor/Templates/
+$ osascript make.js install
 ```
