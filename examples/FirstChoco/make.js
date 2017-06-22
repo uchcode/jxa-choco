@@ -25,7 +25,8 @@ function build(target) {
                 echo ""
                 cat "${target}.js"
             } | osacompile -l JavaScript -s -o "./dist/${target}.app" &&
-            echo 1
+             cp -f ./Info-${target}.plist ./dist/${target}.app/Contents/Info.plist
+           echo 1
         else
             echo ""
         fi
