@@ -2,7 +2,7 @@
 
 function run(argv) {
     ObjC.import('stdlib')
-    let targets = ['CurrencyConverter']
+    let targets = ['Example_Pure_StatuBarMenu', 'Example_Choco_StatuBarMenu']
     switch (argv[0]) {
     case 'clean':
         for (let t of targets) { clean(t) }

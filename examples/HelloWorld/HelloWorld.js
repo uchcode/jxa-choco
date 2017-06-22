@@ -6,14 +6,14 @@ Choco.registerUtilityWindowSubclass({
 	},
 	methods: {
 		initialize() {
+			this.title = 'Hello World'
 			this.setFrame($.NSMakeRect(0, 0, 250, 120))
 			this.center
-			this.title = 'Hello World'
 			this.contentView.addSubview( Choco.Button( c => {
 				c.title = 'Hello!'
 				c.frame = Choco.Rect(10, 10, 110, 80)
 				c.bezelStyle = c.style || $.NSRegularSquareBezelStyle
-				c.sound = $.NSSound.alloc.initWithContentsOfFileByReference('/System/Library/Sounds/Tink.aiff', true)
+				c.sound = Choco.Sound('/System/Library/Sounds/Tink.aiff')
 				c.target = this
 				c.action = 'sayHello:'
 			}))
@@ -21,7 +21,7 @@ Choco.registerUtilityWindowSubclass({
 				c.title = 'Goodbye!'
 				c.frame = Choco.Rect(130, 10, 110, 80)
 				c.bezelStyle = c.style || $.NSRegularSquareBezelStyle
-				c.sound = $.NSSound.alloc.initWithContentsOfFileByReference('/System/Library/Sounds/Basso.aiff', true)
+				c.sound = Choco.Sound('/System/Library/Sounds/Basso.aiff')
 				c.target = $.NSApp
 				c.action = 'terminate:'
 			}))

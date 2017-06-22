@@ -1,39 +1,46 @@
 #!/usr/bin/osascript -l JavaScript
-ObjC.import('stdlib')
-
-Applet = Application.currentApplication()
-Applet.includeStandardAdditions = true
 
 function run(argv) {
+    ObjC.import('stdlib')
     let targets = ['HelloWorld']
-    if (argv[0]==='clean') {
+    switch (argv[0]) {
+    case 'clean':
         for (let t of targets) { clean(t) }
-    } else {
+        break
+    default:
         for (let t of targets) { build(t) }
+        break
     }
     $.exit(0)
 }
 
 function build(target) {
-let cmd = `
-if [ -e "${target}.js" ]; then
-    {
-        cat ../../Choco.js
-        echo ""
-        echo "//====================="
-        echo ""
-        cat "${target}.js"
-    } | osacompile -l JavaScript -s -o "${target}.app" &&
-    echo 1
-else
-    echo ""
-fi
-`
-    if (! Applet.doShellScript(cmd.trim()) ) {
+    let script = `
+        if [ -e "${target}.js" ]; then
+            {
+                mkdir -p ./dist/
+                cat ../../Choco.js
+                echo ""
+                echo "//====================="
+                echo ""
+                cat "${target}.js"
+            } | osacompile -l JavaScript -s -o "./dist/${target}.app" &&
+            echo 1
+        else
+            echo ""
+        fi
+    `
+    if (!doShell(script)) {
         throw `file not found: ${target}.js`
     }
 }
 
 function clean(target) {
-    Applet.doShellScript(`rm -rf "${target}.app"`)
+    doShell(`rm -rf ./dist/`)
+}
+
+function doShell(s) {
+    let a = Application.currentApplication()
+    a.includeStandardAdditions = true
+    return a.doShellScript(s, {alteringLineEndings:false}).trim()
 }

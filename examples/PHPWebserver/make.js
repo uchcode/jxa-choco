@@ -2,13 +2,18 @@
 
 function run(argv) {
     ObjC.import('stdlib')
-    let targets = ['CurrencyConverter']
+    let targets = ['PHPWebserver']
     switch (argv[0]) {
     case 'clean':
         for (let t of targets) { clean(t) }
         break
     default:
-        for (let t of targets) { build(t) }
+        for (let t of targets) {
+            build(t)
+            if (t==='PHPWebserver') {
+                doShell(`cp -R ./public_html/ ./dist/PHPWebserver.app/Contents/Resources/public_html/`)
+            }
+        }
         break
     }
     $.exit(0)

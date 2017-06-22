@@ -10,10 +10,10 @@ Choco.registerUtilityWindowSubclass({
 	},
 	methods: {
 		initialize() {
+			this.title = 'Currency Converter'
 			this.setFrame(Choco.Rect(0, 0, 400, 180))
 			this.center
 			this.setFrameAutosaveName('AppWindow')
-			this.title = 'Currency Converter'
 			this.contentView.addSubview( Choco.Label( c => {
 				c.frame = Choco.Rect(10, 110, 160, 26)
 				c.stringValue = 'Exchange Rate per $1:'
