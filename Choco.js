@@ -231,6 +231,20 @@
 	}
 	global.Choco.DockMenu = DockMenu
 	
+	function PathToResource(resourceName='') {
+		if (resourceName) {
+			return Path($.NSBundle.mainBundle.resourcePath.js+'/'+resourceName)
+		} else {
+			return Path($.NSBundle.mainBundle.resourcePath.js)
+		}
+	}
+	global.Choco.PathToResource = PathToResource
+	
+	function PathToMe() {
+		return Path($(PathToResource().toString()+'/../../').stringByStandardizingPath.js)
+	}
+	global.Choco.PathToMe = PathToMe
+	
 	function registerWindowDelegateSubclass() {
 		if (!$.ChocoWindowDelegate) ObjC.registerSubclass({
 			name:'ChocoWindowDelegate',
@@ -332,5 +346,25 @@
 		})
 	}
 	global.Choco.registerShoeboxWindowSubclass = registerShoeboxWindowSubclass
+	
+	function doShell(script, opt={}) {
+		let a = Application.currentApplication()
+		a.includeStandardAdditions = true
+		return a.doShellScript(script, {
+			administratorPrivileges: !!opt.withPrompt,
+			withPrompt: opt.withPrompt ? opt.withPrompt : '',
+			alteringLineEndings: opt.alteringLineEndings ? opt.alteringLineEndings : false
+		}).trim()
+	}
+	global.Choco.doShell = doShell
+	
+	function globalize(scope) {
+		Object.keys(global.Choco).forEach( i => {
+			if (i === 'globalize') return
+			if (scope[i]) throw `${i} is exist, abort.`
+			scope[i] = global.Choco[i]
+		})
+	}
+	global.Choco.globalize = globalize
 	
 })(this);
