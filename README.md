@@ -20,3 +20,5 @@ $ osascript make-all.js
 1. CurrencyConverter
 1. WebWidget
 1. PHPWebserver
+1. RegistRemind
+1. YouTubeMenubar
