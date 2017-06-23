@@ -1,9 +1,6 @@
-((global)=>{
+JsOsaDAS1.001.00bplist00ÑVscript_)Œ((global)=>{
 
 ObjC.import('Cocoa')
-
-let Applet = Application.currentApplication()
-Applet.includeStandardAdditions = true
 
 global.Choco = {}
 
@@ -356,7 +353,9 @@ function registerShoeboxWindowSubclass(argv={}) {
 global.Choco.registerShoeboxWindowSubclass = registerShoeboxWindowSubclass
 
 function doShell(script, opt={}) {
-	return Applet.doShellScript(script, {
+	let a = Application.currentApplication()
+	a.includeStandardAdditions = true
+	return a.doShellScript(script, {
 		administratorPrivileges: !!opt.withPrompt,
 		withPrompt: opt.withPrompt ? opt.withPrompt : '',
 		alteringLineEndings: opt.alteringLineEndings ? opt.alteringLineEndings : false
@@ -375,3 +374,44 @@ function globalize(scope) {
 global.Choco.globalize = globalize
 
 })(this);
+
+//=====================
+
+ObjC.import('Cocoa')
+
+Choco.registerUtilityWindowSubclass({
+	name: 'AppWindow',
+	properties: {
+	},
+	methods: {
+		initialize() {
+			this.title = 'Hello World'
+			this.setFrame($.NSMakeRect(0, 0, 250, 120))
+			this.center
+			this.contentView.addSubview( Choco.Button( c => {
+				c.title = 'Hello!'
+				c.frame = Choco.Rect(10, 10, 110, 80)
+				c.bezelStyle = c.style || $.NSRegularSquareBezelStyle
+				c.sound = Choco.Sound('/System/Library/Sounds/Tink.aiff')
+				c.target = this
+				c.action = 'hello:'
+			}))
+			this.contentView.addSubview( Choco.Button( c => {
+				c.title = 'Goodbye!'
+				c.frame = Choco.Rect(130, 10, 110, 80)
+				c.bezelStyle = c.style || $.NSRegularSquareBezelStyle
+				c.sound = Choco.Sound('/System/Library/Sounds/Basso.aiff')
+				c.target = $.NSApp
+				c.action = 'terminate:'
+			}))
+		},
+		hello(sender) {
+			$.NSLog('hello')
+		},
+	},
+})
+
+window = $.AppWindow.alloc.init
+window.makeKeyAndOrderFront(window)
+$.NSApp.activateIgnoringOtherApps(true)
+                              )¢jscr  úÞÞ­

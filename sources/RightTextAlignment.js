@@ -1,0 +1,3 @@
+function RightTextAlignment() {
+	return $.NSRightTextAlignment
+}
