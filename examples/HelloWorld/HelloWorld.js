@@ -15,7 +15,7 @@ Choco.registerUtilityWindowSubclass({
 				c.bezelStyle = c.style || $.NSRegularSquareBezelStyle
 				c.sound = Choco.Sound('/System/Library/Sounds/Tink.aiff')
 				c.target = this
-				c.action = 'sayHello:'
+				c.action = 'hello:'
 			}))
 			this.contentView.addSubview( Choco.Button( c => {
 				c.title = 'Goodbye!'
@@ -26,11 +26,12 @@ Choco.registerUtilityWindowSubclass({
 				c.action = 'terminate:'
 			}))
 		},
-		sayHello(sender) {
+		hello(sender) {
 			$.NSLog('hello')
 		},
 	},
 })
 
 window = $.AppWindow.alloc.init
-window.makeKeyAndOrderFront($())
+window.makeKeyAndOrderFront(window)
+$.NSApp.activateIgnoringOtherApps(true)

@@ -3,7 +3,7 @@ ObjC.import('Cocoa')
 Applet = Application.currentApplication()
 Applet.includeStandardAdditions = true
 
-const RESOURCE = resourcePath()
+const RESOURCE = Choco.PathToResource()
 const DIR  = `${RESOURCE}/public_html/`
 const LOG  = `${RESOURCE}/webserver.log`
 
@@ -54,10 +54,10 @@ $.NSApp.dockMenu = Choco.DockMenu({
 			}))
 		},
 		home(sender) {
-			doShell(`open "${URL}"`)
+			Choco.doShell(`open "${URL}"`)
 		},
 		status(sender) {
-			let pid = doShell(SCPT_PID)
+			let pid = Choco.doShell(SCPT_PID)
 			if (pid) {
 				var msg = 'status: running...: server pid: '+pid
 			} else {
@@ -68,52 +68,37 @@ $.NSApp.dockMenu = Choco.DockMenu({
 			$.NSLog(msg)
 		},
 		start(sender) {
-			if (!doShell(SCPT_PID)) {
-				doShell(SCPT_START)
+			if (!Choco.doShell(SCPT_PID)) {
+				Choco.doShell(SCPT_START)
 			}
 			delay(1)
 			this.status(sender)
 		},
 		stop(sender) {
-			doShell(SCPT_STOP)
+			Choco.doShell(SCPT_STOP)
 			delay(1)
 			this.status(sender)
 		},
 		restart(sender) {
-			doShell(SCPT_STOP)
+			Choco.doShell(SCPT_STOP)
 			delay(1)
-			doShell(SCPT_START)
+			Choco.doShell(SCPT_START)
 			this.status(sender)
 		},
 		public_html(sender) {
-			doShell(`open "${DIR}"`)
+			Choco.doShell(`open "${DIR}"`)
 		},
 	},
 })
 
 function run(argv) {
-	doShell(SCPT_START)
+	Choco.doShell(SCPT_START)
 	delay(1)
-	doShell(`open "${URL}/info.php"`)
-	doShell(`open "${LOG}"`)
+	Choco.doShell(`open "${URL}/info.php"`)
+	Choco.doShell(`open "${LOG}"`)
 }
 
 function quit() {
-	doShell(SCPT_STOP)
+	Choco.doShell(SCPT_STOP)
 	return true
-}
-
-function doShell(s) {
-	return Applet.doShellScript(s, {alteringLineEndings:false}).trim()
-}
-
-function resourcePath() {
-	var r = $.NSBundle.mainBundle.resourcePath.js
-	if (r == '/usr/bin') {
-		r = $(Applet.pathTo(this).toString())
-				.stringByDeletingLastPathComponent
-				.stringByDeletingLastPathComponent
-				.js
-	}
-	return r
 }

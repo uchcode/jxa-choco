@@ -2,7 +2,7 @@
 
 function run(argv) {
     ObjC.import('stdlib')
-    let targets = ['FirstChoco', 'HelloWorld', 'CurrencyConverter', 'WebWidget', 'PHPWebserver']
+    let targets = ['FirstChoco', 'HelloWorld', 'CurrencyConverter', 'WebWidget', 'PHPWebserver', 'RegistRemind', 'YouTubeMenubar']
     switch (argv[0]) {
     case 'clean':
         for (let t of targets) { clean(t) }

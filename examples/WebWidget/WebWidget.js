@@ -32,5 +32,5 @@ Choco.registerUtilityWindowSubclass({
 })
 
 window = $.AppWindow.alloc.init
-window.makeKeyAndOrderFront(this)
+window.makeKeyAndOrderFront(window)
 $.NSApp.activateIgnoringOtherApps(true)

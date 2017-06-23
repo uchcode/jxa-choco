@@ -3,7 +3,7 @@ ObjC.import('Cocoa')
 Applet = Application.currentApplication()
 Applet.includeStandardAdditions = true
 
-Choco.StatusItem( c => {
+_ = Choco.StatusItem( c => {
 	c.title = '❤️'
 	c.menu = Choco.StatusItemMenu({
 		methods: {
