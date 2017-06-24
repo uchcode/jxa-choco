@@ -12,7 +12,7 @@ $ osascript make.js install
 
 ```
 $ cd examples
-$ osascript make-all.js
+$ osascript make.js
 ```
 
 1. FirstChoco
