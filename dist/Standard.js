@@ -7,7 +7,7 @@ const Standard = (()=>{
     function PathToMe() {
         let a = Application.currentApplication()
         a.includeStandardAdditions = true
-        return Path(a.pathTo(this).toString())
+        return a.pathTo(this)
     }
     
     function PathToDirectory(path) {
@@ -15,21 +15,21 @@ const Standard = (()=>{
     }
     
     function PathToDirectoryAtMe() {
-        return Path2(PathToMe()+'/../')
+        return Path(PathToMe()+'/../')
     }
     
     function PathToResource(resourceName='') {
         if ($.NSBundle.mainBundle.resourcePath.js=='/usr/bin') {
             if (resourceName) {
-                return Path2(PathToDirectoryAtMe().toString()+'/'+resourceName)
+                return Path(PathToDirectoryAtMe()+'/Resources/'+resourceName)
             } else {
-                return Path2(PathToDirectoryAtMe().toString())
+                return Path(PathToDirectoryAtMe()+'/Resources')
             }
         } else {
             if (resourceName) {
-                return Path2(PathToMe().toString()+'/Contents/Resources/'+resourceName)
+                return Path(PathToMe()+'/Contents/Resources/'+resourceName)
             } else {
-                return Path2(PathToMe().toString()+'/Contents/Resources')
+                return Path(PathToMe()+'/Contents/Resources')
             }
         }
     }
