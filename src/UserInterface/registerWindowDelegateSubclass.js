@@ -4,6 +4,7 @@ function registerWindowDelegateSubclass() {
         protocols: ['NSWindowDelegate'],
         methods: {
             'windowWillClose:'(notification) {
+                try { if (quit()==false) return } catch(e) {}
                 $.NSApplication.sharedApplication.terminate($())
             }
         }
