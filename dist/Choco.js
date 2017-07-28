@@ -140,7 +140,7 @@ const Choco = (()=>{
             output(arguments.length?obj:'', terminator, encoding)
         }
         
-        function p(obj,terminator='\n',encoding=$.NSUTF8StringEncoding) {
+        function debugPrint(obj,terminator='\n',encoding=$.NSUTF8StringEncoding) {
             let s = arguments.length ?
                         StringFromObject(obj,true) + terminator : terminator
             $.NSFileHandle.fileHandleWithStandardOutput
@@ -199,7 +199,7 @@ const Choco = (()=>{
             gets: gets,
             puts: puts,
             print: print,
-            p:p,
+            debugPrint:debugPrint,
             nslog: nslog,
             exit: exit,
             testUTItype: testUTItype,

@@ -136,7 +136,7 @@ function print(obj,terminator='\n',encoding=$.NSUTF8StringEncoding) {
     output(arguments.length?obj:'', terminator, encoding)
 }
 
-function p(obj,terminator='\n',encoding=$.NSUTF8StringEncoding) {
+function debugPrint(obj,terminator='\n',encoding=$.NSUTF8StringEncoding) {
     let s = arguments.length ?
                 StringFromObject(obj,true) + terminator : terminator
     $.NSFileHandle.fileHandleWithStandardOutput

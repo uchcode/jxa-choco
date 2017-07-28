@@ -20,7 +20,7 @@
         gets: gets,
         puts: puts,
         print: print,
-        p:p,
+        debugPrint:debugPrint,
         nslog: nslog,
         exit: exit,
         testUTItype: testUTItype,
