@@ -212,7 +212,7 @@ const Choco = (()=>{
         const app = Application.currentApplication()
         app.includeStandardAdditions = true
         
-        function shell(script, opt={}) {
+        function sh(script, opt={}) {
             return app.doShellScript(script, {
                 administratorPrivileges: !!opt.withPrompt,
                 withPrompt: opt.withPrompt || '',
@@ -220,14 +220,14 @@ const Choco = (()=>{
             }).replace(/\n$/,'')
         }
         
-        function sh(script, opt={}) {
-            try { return shell(script,opt) } catch(e) {
+        function shell(script, opt={}) {
+            try { return sh(script,opt) } catch(e) {
                 return ''
             }
         }
         
         function test(arg) {
-            try { return !!shell(`test ${arg}`) } catch(e) {
+            try { return !!sh(`test ${arg}`) } catch(e) {
                 return false
             }
         }
